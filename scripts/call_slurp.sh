@@ -1,3 +1,12 @@
 #!/bin/env bash
-if eval python3 -version == '3' then
-	if [ -z slurp.py] then python3 slurp.py
+FILE = ./slurp.py
+PYTHON = `which python`
+if [ `PYTHON -v` == '3' ]; then
+	if --f $FILE ; then
+	  PYTHON $FILE;
+  fi
+else
+  echo 'This is not python 3, exiting, sorry!';
+  exit 0;
+fi
+
