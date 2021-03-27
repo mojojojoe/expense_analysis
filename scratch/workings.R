@@ -25,9 +25,11 @@ levels(expenses$category)
   summary(levels(expenses)
 
 
-dictionary[:petrol]
 
-p= dictionary[:petrol]
+for k = 1:len(title){
+    title[k] = dictionary[as.symbol(title[k])]
+
+p=dictionary[:petrol]
 g=dictionary[:grocery]
 e=dictionary[:eatout]
 h=dictionary[:house]
@@ -54,6 +56,23 @@ plot(histogram(g[:days_between],normalize=:probability,ylims=(0,1.0),nbins=5),
 
 prob=1/mean(mot[:days_between])
 (1-prob)/prob
+
+
+
+prob <- function(msg,dictionary,title){
+    println(msg," ",size(dictionary[:days_between]))
+    theta=1/mean(dictionary[:days_between])
+    P=0
+    sum=0
+    for k=0:5 {
+        P = theta * (1-theta)^k
+        print("For Y, the probability that the number of failures = ",k," is P = ",P,"\n")
+        sum += P
+    }
+    println(sum)
+}
+
+
 
 println("Eating out has a sample size of ", size(e[:days_between]))
 theta=1/mean(e[:days_between])
